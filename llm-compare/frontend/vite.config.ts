@@ -4,7 +4,10 @@ import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react({
+    jsxRuntime: 'automatic',
+    jsxImportSource: 'react'
+  })],
   base: './',
   resolve: {
     alias: {
@@ -20,6 +23,8 @@ export default defineConfig({
         chunkFileNames: 'assets/[name].js',
         assetFileNames: 'assets/[name].[ext]'
       }
-    }
+    },
+    target: 'esnext',
+    sourcemap: true
   }
 }) 
