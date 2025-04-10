@@ -54,8 +54,8 @@ jobs:
           api_location: "" # Api source code path - optional
           output_location: "dist" # Built app content directory - optional
           github_id_token: ${{ steps.idtoken.outputs.result }}
-          skip_deploy_on_missing_secrets: false
-          deployment_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_WONDERFUL_GRASS_09ED95C00 }}
+          skip_app_build: true # Skip build since we already built it
+          app_artifact_location: "llm-compare/frontend/dist" # Location of the built app
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
