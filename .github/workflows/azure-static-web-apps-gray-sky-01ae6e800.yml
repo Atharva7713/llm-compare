@@ -56,7 +56,7 @@ jobs:
           github_id_token: ${{ steps.idtoken.outputs.result }}
           skip_app_build: true # Skip build since we already built it
           app_artifact_location: "llm-compare/frontend/dist" # Location of the built app
-          config_file_location: "llm-compare/staticwebapp.config.json" # Location of the routes configuration
+          #config_file_location: "llm-compare/staticwebapp.config.json" # Location of the routes configuration
 
 
   close_pull_request_job:
