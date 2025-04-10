@@ -7,9 +7,17 @@
     <title>LLM Compare - Compare Language Model Responses</title>
     <meta name="description" content="Compare responses from multiple Large Language Models side by side. Test prompts, analyze performance, and make data-driven decisions." />
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <script type="importmap">
+      {
+        "imports": {
+          "react": "https://esm.sh/react@18.2.0",
+          "react-dom": "https://esm.sh/react-dom@18.2.0"
+        }
+      }
+    </script>
   </head>
   <body class="h-full bg-gray-50 dark:bg-gray-900">
     <div id="root"></div>
-    <script type="module" src="./src/main.tsx"></script>
+    <script type="module" crossorigin src="./src/main.tsx"></script>
   </body>
 </html> 
