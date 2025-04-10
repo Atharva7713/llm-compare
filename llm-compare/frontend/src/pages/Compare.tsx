@@ -230,34 +230,34 @@ const Compare: React.FC = () => {
                 Select models to compare
               </label>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                {availableModels.map((model) => (
-                  <div
-                    key={model.id}
-                    className={`p-4 rounded-lg border ${
-                      selectedModels.find(m => m.id === model.id)
-                        ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20'
-                        : 'border-gray-300 dark:border-gray-700'
-                    }`}
-                  >
-                    <div className="flex justify-between items-start">
+                {[1, 2, 3, 4].map((index) => (
+                  <div key={index} className="relative">
+                    <select
+                      className="w-full p-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                      value={selectedModels[index - 1]?.id || ''}
+                      onChange={(e) => {
+                        const selectedModel = availableModels.find(m => m.id === e.target.value)
+                        if (selectedModel) {
+                          const newSelectedModels = [...selectedModels]
+                          newSelectedModels[index - 1] = selectedModel
+                          setSelectedModels(newSelectedModels)
+                        }
+                      }}
+                    >
+                      <option value="">Select a model</option>
+                      {availableModels.map((model) => (
+                        <option key={model.id} value={model.id}>
+                          {model.name} ({model.provider})
+                        </option>
+                      ))}
+                    </select>
+                    {selectedModels[index - 1] && (
                       <button
-                        onClick={() => handleModelToggle(model)}
-                        className="flex-1 text-left"
-                      >
-                        <div className="font-medium text-gray-900 dark:text-white">{model.name}</div>
-                        <div className="text-sm text-gray-500 dark:text-gray-400">{model.provider}</div>
-                      </button>
-                      <button
-                        onClick={() => handleModelConfig(model)}
-                        className="ml-2 p-1 text-gray-400 hover:text-gray-500 dark:hover:text-gray-300"
+                        onClick={() => handleModelConfig(selectedModels[index - 1])}
+                        className="absolute right-8 top-1/2 -translate-y-1/2 p-1 text-gray-400 hover:text-gray-500 dark:hover:text-gray-300"
                       >
                         <Cog6ToothIcon className="h-5 w-5" />
                       </button>
-                    </div>
-                    {selectedModels.find(m => m.id === model.id) && (
-                      <div className="mt-2 text-xs text-gray-500 dark:text-gray-400">
-                        Temp: {model.temperature} • Max: {model.maxTokens}
-                      </div>
                     )}
                   </div>
                 ))}
