@@ -4,7 +4,7 @@ import { persist } from 'zustand/middleware'
 export interface ModelConfig {
   id: string
   name: string
-  provider: string
+  provider: 'OpenAI' | 'Anthropic' | 'Gemini' | 'Cohere'
   temperature: number
   maxTokens: number
 }
