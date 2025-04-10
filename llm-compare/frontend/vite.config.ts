@@ -18,9 +18,7 @@ export default defineConfig({
         changeOrigin: true,
       },
     },
-    headers: {
-      'Content-Type': 'application/javascript'
-    }
+    
   },
   build: {
     outDir: 'dist',
@@ -31,9 +29,9 @@ export default defineConfig({
         manualChunks: {
           vendor: ['react', 'react-dom', 'react-router-dom'],
         },
-        entryFileNames: 'assets/[name].ts',
-        chunkFileNames: 'assets/[name].ts',
-        assetFileNames: 'assets/[name].[ext]'
+        entryFileNames: 'assets/[name].[hash].ts',
+        chunkFileNames: 'assets/[name].[hash].ts',
+        assetFileNames: 'assets/[name].[hash].[ext]'
       },
     },
   },
