@@ -5,7 +5,6 @@ import path from 'path'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base:'/llm-compare/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
@@ -19,5 +18,24 @@ export default defineConfig({
         changeOrigin: true,
       },
     },
+    headers: {
+      'Content-Type': 'application/javascript'
+    }
   },
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets',
+    sourcemap: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'react-router-dom'],
+        },
+        entryFileNames: 'assets/[name].js',
+        chunkFileNames: 'assets/[name].js',
+        assetFileNames: 'assets/[name].[ext]'
+      },
+    },
+  },
+  base: '/',
 }) 
